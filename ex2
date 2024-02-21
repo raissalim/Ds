@@ -1,0 +1,59 @@
+import java.util.Scanner;
+public class ex2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+     Scanner in=new Scanner(System.in);
+       double salario,valoraula,aulasdadas, resultado, salariototal;
+       System.out.println("Digite quantidade de aulas dadas por mes");
+       aulasdadas=in.nextDouble();
+       System.out.println("Digite valor da aula por hora ");
+       valoraula=in.nextDouble();
+       salario=aulasdadas*valoraula;
+       
+        if (salario<=1212){
+        	
+        	resultado = (7.5*salario)/100;
+        	salariototal= salario-resultado;
+        	System.out.println("Seu salário é:" +salariototal);
+        	
+        } else if  (salario>1212 && salario<=2427.35 ){
+        	resultado = (9*salario)/100;
+        	salariototal= salario-resultado;
+        	System.out.println("Seu salário é:" +salariototal);
+        	
+        	
+        } else if  (salario<=2427.36 && salario<=3641.03){
+        	resultado = (12*salario)/100;
+        	salariototal= salario-resultado;
+        	System.out.println("Seu salário é:" +salariototal);
+
+        }  else if  (salario<=3641.04 && salario<=7087.22){
+        	resultado = (14*salario)/100;
+        	salariototal= salario-resultado;
+        	System.out.println("Seu salário é:" +salariototal);
+
+        }  else if  (salario<=7087.23 && salario<=12136.79){
+        	resultado = (14.5*salario)/100;
+        	salariototal= salario-resultado;
+        	System.out.println("Seu salário é:" +salariototal);
+
+        }  else if  (salario<=12136.80 && salario<=24273.57){
+        	resultado = (16.5*salario)/100;
+        	salariototal= salario-resultado;
+        	System.out.println("Seu salário é:" +salariototal);
+
+        }  else if  (salario<=24273.58 && salario<=47333.46){
+        	resultado = (19*salario)/100;
+        	salariototal= salario-resultado;
+        	System.out.println("Seu salário é:" +salariototal);
+
+        }  else{
+        	resultado = (22*salario)/100;
+        	salariototal= salario-resultado;
+        	System.out.println("Seu salário é:" +salariototal);
+
+        } in.close();
+	}
+
+}
