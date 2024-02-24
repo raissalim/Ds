@@ -1,0 +1,40 @@
+import java.util.Scanner;
+public class Produto {
+    public static void main(String[]args){
+        Scanner in=new Scanner(System.in);
+        double valor,venda,margem,percentual;
+        final  int TAM = 1;
+        String resposta;
+        int a[];
+        a=new int[TAM];
+        for(int i=0;i<=a.length;){
+            //valor produto
+           System.out.println("Digite valor do produto!");
+            valor=in.nextDouble();
+            
+            //margem do lucro em%
+            System.out.println("Digite valor da margem de lucro em porcentagem!");
+            margem=in.nextDouble();
+       // for(int r=0;r<=a.length;r++){
+            //p
+                System.out.println("Descobrindo venda");
+            venda=(valor/margem)*100;
+            System.out.println(venda);
+            
+               // perguntando para apos continuar conta
+            System.out.print("Deseja continuar? [S/N] ");
+            resposta= in.next();// nao precisa do line 
+            if(resposta == "S"){
+            //percentual=margem/100;
+            }
+            
+            else {
+                System.out.println("A consulta termina aqui");
+                i++;
+                // se n incrementar a pessoa vai ficar digitando sim sim e n vai incrementar 
+            }
+        }
+        in.close();
+        }
+    }
+//}
