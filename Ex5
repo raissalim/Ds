@@ -1,0 +1,29 @@
+import java.util.Scanner;
+public class ex5 {
+  public static void main(String[]args){
+  Scanner in=new Scanner (System.in) ;
+      int a[];
+      int b[];
+      int c[];
+      final int TAM=10;
+      a=new int [TAM];
+      b=new int [TAM];
+      c=new int [TAM];
+      //leitura
+      for(int i=0;i<TAM;i++){
+          System.out.println("Digite primeiro valor!");
+          a[i]=in.nextInt();
+      }
+      //leitura
+      for(int i=0;i<TAM;i++){
+          System.out.println("Digite segundo valor!");
+          b[i]=in.nextInt();
+      }
+      // apresentando 
+      for(int i=0;i<TAM;i++){
+          c[i]=a[i]+b[i];
+          System.out.println("Valor da soma é:"+c[i]);
+      }
+     
+}
+}
