@@ -1,0 +1,47 @@
+import java.util.Scanner;
+public class Localizaçaonumeros {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        
+        int[][] n = new int[3][3];
+        
+        // digitou valores
+        
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                System.out.println("Digite os valores:");
+                n[i][j] = in.nextInt();
+                System.out.println();
+              ;
+            }
+        }
+        
+        // Contar valores ímpares e pares
+        int pares = 0;
+        int impares = 0;
+         int p=0;
+           int inp=0;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (n[i][j] % 2 == 0) {
+                    pares++;
+                    
+                    System.out.println("o numero par:: " +n[i][j]+ " " + " pertence a coluna "+j+"e linha "+i);
+                    System.out.println("\n");
+                } else {
+                    impares++;
+                    System.out.println("o numero impar::"+n[i][j]+ " " + "pertence a coluna" +j+" e linha"+i);
+                }
+                
+                   
+                  pares+=p;// a ideia é apresentar os valores pares 
+                    impares+=inp;
+            }
+        }
+        
+        System.out.println("Quantidade de valores pares na matriz: " + pares);
+        System.out.println("Quantidade de valores ímpares na matriz: " + impares);
+                }
+    }
+
+
