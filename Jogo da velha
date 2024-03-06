@@ -1,0 +1,52 @@
+package jogoVelha;
+import java.util.Scanner;
+public class tabuleiro {
+		public static void main(String[] args) {
+			// TODO Auto-generated method stub
+			Scanner in=new Scanner(System.in);
+			 String [] [] a= new String [3] [3];
+			int x=0;int  y=0, t, l=0, m=0 ;
+			 int jogador1=0, jogador2=0;  
+			
+			 
+						  
+			
+			//Letra
+			 for(int i=0;i<3;i++) {
+				 for(int j=0;j<3;j++) {
+					 System.out.println("Digite o valor da linha");
+					 x = in.nextInt();
+					 System.out.println("Digite o valor da coluna");
+					 y = in.nextInt();
+					 System.out.println("Digite o valor da linha");
+					 l = in.nextInt();
+					 System.out.println("Digite o valor da coluna");
+					 m = in.nextInt();
+					
+					 a[x][y] = "x";
+					 a[l][m] = "o";
+					
+
+				 }
+			 }
+			
+					 
+			
+			 for(int i=0;i<3;i++) {
+				 for(int j=0;j<3;j++) {
+					 System.out.print(a[i][j]+ " ");
+					 
+					 
+				 }
+				 System.out.println();
+			 }
+				 }
+					 
+				 
+				
+			
+					 }
+				
+			  
+
+
