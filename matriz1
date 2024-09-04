@@ -1,30 +1,31 @@
 package matriz1;
-  import java.util.Scanner;
+
+import java.util.Scanner;
+
 public class matrizex1 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Scanner in=new Scanner(System.in);
-		 int [] [] ma=new int [3] [3];
-		  for (int i=0;i<=2;i++) {
-			  for(int j=0;j<=2;j++) {
-				  
-			System.out.println("Digite um valor da coluna" +j+" linha " +i );
-			ma [i] [j] = in.nextInt();
-			
-			  }
-			  
-		  }
-		  
-		  for (int i=0;i<=2;i++) {
-			  System.out.println();
-			  for(int j=0;j<=2;j++) {
-				  
-			System.out.print(ma [i] [j] + " ");
-		
-				 }
-			
-		  }
-	  }
- }
-	
+		Scanner in = new Scanner(System.in);
+		int[][] ma = new int[3][3];
+		for (int i = 0; i <= 2; i++) {
+			for (int j = 0; j <= 2; j++) {
+
+				System.out.println("Digite um valor da coluna" + j + " linha " + i);
+				ma[i][j] = in.nextInt();
+
+			}
+
+		}
+
+		for (int i = 0; i <= 2; i++) {
+			System.out.println();
+			for (int j = 0; j <= 2; j++) {
+
+				System.out.print(ma[i][j] + " ");
+
+			}
+
+		}
+	}
+}
