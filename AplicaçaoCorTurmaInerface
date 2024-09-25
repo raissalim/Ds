@@ -1,0 +1,6 @@
+
+public class Aplicaçao  extends Turma{
+	public static void main(String[] args) {
+		new Turma ();
+	}
+}
