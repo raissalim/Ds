@@ -1,0 +1,106 @@
+package encapsulamento;
+
+public class Pessoa {
+	private String nome;
+	private String nasc;
+	private String ec;
+	private char genero ;
+	private String rg;
+	private String cpf;
+	private String email ;
+	private String tel;
+	private String end;
+	private String cep;
+
+																																											
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
+	public String getNome() {
+		//return this.nome;
+		return nome;
+	}
+	
+	public void setNasc(String nasc) {
+		this.nasc = nasc;
+	}
+	
+	public String getNasc( ) {
+		//return this.nome;
+		return nasc;
+	}
+	
+	public void setEstadoCivil(String ec) {
+		this.ec = ec ;
+	}
+	
+	public String getEstadoCivil() {
+		//return this.nome;
+		return ec;
+	}
+	
+	public void setGenero(char genero) {
+		this.genero = genero;
+	}
+	
+	public char getGenero() {
+		//return this.nome;
+		return genero;
+	}
+	
+	public void setRg(String rg) {
+		this.rg = rg ;
+	}
+	
+	public String getRg() {
+		//return this.nome;
+		return rg;
+	}
+	
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+	
+	public String getCpf() {
+		//return this.nome;
+		return cpf;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email ;
+	}
+	
+	public String getEmail() {
+		//return this.nome;
+		return email ;
+	}
+	
+	public void setTelefone(String tel) {
+		this.tel = tel;
+	}
+	
+	public String getTelefone() {
+		//return this.nome;
+		return tel;
+	}
+	
+	public void setEndereco(String end) {
+		this.end = end;
+	}
+	
+	public String getEndereco() {
+		//return this.nome;
+		return end;
+	}
+	
+	public void setCep(String cep ) {
+		this.cep = cep;
+	}
+	
+	public String getCep() {
+		//return this.nome;
+		return cep;
+	}
+											
+}
