@@ -1,0 +1,21 @@
+	import java.util.Scanner;
+public class Retangulo  extends FiguraGeometrica{
+		Scanner in= new Scanner(System.in);
+		
+
+		public void CalcularArea() {
+			System.out.println("Digite o valor da base");
+			b = in.nextDouble();
+			System.out.println("Digite o valor da altura");
+			h = in.nextDouble();
+		    res=b*h;
+		    System.out.println("A área do retângulo é:"+res);
+		    // perimetro do retangulo 
+		    double p;
+		    p=(b+b)+(h+h);
+		    System.out.println("\n");
+		    System.out.println("O valor do perimetro o ratangulo é:"+p);
+		    
+		    
+		}
+}
