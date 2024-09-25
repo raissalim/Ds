@@ -1,0 +1,31 @@
+	import java.util.Scanner;
+public class Triangulo  extends FiguraGeometrica{
+		Scanner in= new Scanner(System.in);
+		
+		public void CalcularArea() {
+			System.out.println("Digite o valor da base ");
+			b = in.nextDouble();
+			System.out.println("Digite o valor da altura");
+			h = in.nextDouble();
+		    res=(b*h)/2;
+		    System.out.println(res);
+		    System.out.println("\n");
+		 // Solicitar o comprimento dos três lados para determinar o tipo de triângulo
+	        System.out.println("Digite o comprimento do lado 1");
+	        double lado1 = in.nextDouble();
+	        System.out.println("Digite o comprimento do lado 2");
+	        double lado2 = in.nextDouble();
+	        System.out.println("Digite o comprimento do lado 3");
+	        double lado3 = in.nextDouble();
+	        System.out.println("\n");
+
+	        // Verificar o tipo de triângulo pelos lados
+	        if (lado1 == lado2 && lado2 == lado3) {
+	            System.out.println("Triângulo equilátero!");
+	        } else if (lado1 == lado2 || lado2 == lado3 || lado1 == lado3) {
+	            System.out.println("Triângulo isósceles!");
+	        } else {
+	            System.out.println("Triângulo escaleno!");
+	        }
+		}
+}
