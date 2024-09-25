@@ -1,0 +1,49 @@
+import java.util.Scanner;
+public class MetodoArea{
+  public static void main(String[] args) {
+	  Scanner in= new Scanner(System.in);	  		
+	  		 int escolha;
+	  		 boolean continuar = true;
+	  		 Quadrado q = new Quadrado ();
+	  		 Retangulo r = new Retangulo();
+	  		 Triangulo t = new Triangulo();
+	  		 Circulo c = new Circulo();
+	         while (continuar) {
+	  		 System.out.println("Qual  Funçao deseja usar,quadrado,retangulo,circulo e triangulo respectivamente ? [1,2,3,4]");
+	  		 escolha = in.nextInt();
+	  		 
+	  		// decidir metodo a seer usada//
+	  		if(escolha==1){
+	  			q.CalcularArea();
+	  		}
+	  		else if(escolha==2) {
+	  			r.CalcularArea();
+	  		
+	  		}
+	  		else if(escolha==3){
+	  			c.CalcularArea();
+	  		}
+	  		 else if(escolha==4){
+	  			t.CalcularArea();
+	  		 }
+	  		 int again;
+	  		 System.out.println("Deseja retornar?[sim][nao] [1,2] respectivamente");
+	  		 again= in.nextInt();
+	  		 
+	         if (again== 2) {
+	         continuar = false; // Sai do loop e encerra o programa//
+	                System.out.println("até breve!");
+	            }
+	            // Se a resposta for 1 ou qualquer outra coisa, o loop continua//
+	        }
+	  		
+	  		
+	  		 
+	  		 
+	         }
+  }
+	  
+	
+	  
+  
+
