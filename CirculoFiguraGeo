@@ -1,0 +1,15 @@
+import java.util.Scanner;
+public class Circulo  extends FiguraGeometrica {
+
+	Scanner in= new Scanner(System.in);
+    double  R;
+
+
+	public void CalcularArea() {
+		System.out.println("Digite o valor do raio");
+		R = in.nextDouble();
+	    res=(R*R)*Math.PI;
+	    System.out.println(res);
+	    System.out.println("\n");
+	}
+}
