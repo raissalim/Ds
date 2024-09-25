@@ -1,0 +1,92 @@
+package encapsulamento;
+
+import java.util.*;
+
+public class Aplicacao {
+	public static void main(String[] args) {
+		Scanner in = new a(System.in);
+
+		Pessoa p1 = new Pessoa();
+
+		System.out.print("Digite seu Nome: ");
+		String nome = in.nextLine();
+		p1.setNome(nome);
+		
+		System.out.print("Digite sua Data de Nascimento: ");
+		String nasc = in.nextLine();
+		p1.setNasc(nasc);
+
+		System.out.print("Digite seu Estado Civil: ");
+		String ec = in.nextLine();
+		p1.setEstadoCivil(ec);
+
+		System.out.print("Digite seu Genero: ");
+		char genero = in.nextLine().charAt(1);
+		p1.setGenero(genero);
+
+		System.out.print("Digite seu RG: ");
+		String rg = in.nextLine();
+		p1.setRg(rg);
+
+		System.out.print("Digite seu CPF: ");
+		String cpf = in.nextLine();
+		p1.setCpf(cpf);
+
+		System.out.print("Digite seu Email: ");
+		String email = in.nextLine();
+		p1.setEmail(email);
+
+		System.out.print("Digite seu Telefone: ");
+		String tel = in.nextLine();
+		p1.setTelefone(tel);
+
+		System.out.print("Digite seu Endereço: ");
+		String end = in.nextLine();
+		p1.setEndereco(end);
+
+		System.out.print("Digite seu Cep: ");
+		String cep = in.nextLine();
+		p1.setCep(cep);
+ 
+		System.out.println();
+		System.out.println("-------------Informações---------------");
+		System.out.println("Nome: " +p1.getNome());
+		System.out.println("---------------------------------------");
+
+		
+		System.out.println("Nascimento: " +p1.getNasc());
+		System.out.println("---------------------------------------");
+
+		
+		System.out.println("Estado Civil: " +p1.getEstadoCivil());
+		System.out.println("---------------------------------------");
+
+		
+		System.out.println("Gênero: " +p1.getGenero());
+		System.out.println("---------------------------------------");
+
+	
+		System.out.println("Rg: " +p1.getRg());
+		System.out.println("---------------------------------------");
+
+		
+		System.out.println("Cpf: " +p1.getCpf());
+		System.out.println("---------------------------------------");
+
+		
+		System.out.println("Email: " +p1.getEmail());
+		System.out.println("---------------------------------------");
+
+		
+		System.out.println("Telefone: " +p1.getTelefone());
+		System.out.println("---------------------------------------");
+
+
+		System.out.println("Endereço: " +p1.getEndereco());
+		System.out.println("---------------------------------------");
+
+		
+		System.out.println("CEP: " +p1.getCep());
+		System.out.println("---------------------------------------");
+		in.close();}
+}
