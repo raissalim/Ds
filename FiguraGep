@@ -1,0 +1,14 @@
+import java.util.Scanner;
+public abstract class FiguraGeometrica {
+	Scanner in = new Scanner (System.in);
+      // Atributos 
+      
+      
+       double  L1;
+       double  res;
+       double  b;
+       double  h;   
+       
+       public abstract void CalcularArea();
+	}
+
