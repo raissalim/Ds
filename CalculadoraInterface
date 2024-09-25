@@ -1,0 +1,157 @@
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JOptionPane; // Importar JOptionPane
+import javax.swing.BorderFactory; // Importar BorderFactory
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Calculadora extends JFrame {
+
+    // Atributos de instância
+    private JLabel lbvalor1;
+    private JLabel lbvalor2;
+    private JTextField txnumero1;
+    private JTextField txnumero2;
+    private JButton btSomar;
+    private JButton btSubtrair;
+    private JButton btDivisao;
+    private JButton btMultiplicar;
+
+    public Calculadora() {
+        // Construtor
+        setTitle("Calculadora");
+        setSize(800, 600);  // Largura e altura (pixels)
+        setDefaultCloseOperation(EXIT_ON_CLOSE); // Libera da memória ao fechar
+        setLayout(null);
+        setResizable(false); // Não será possível redimensionar o tamanho da janela
+        setLocationRelativeTo(null); // Centraliza a janela na tela
+
+        // Definir a cor de fundo da janela
+        getContentPane().setBackground(new Color(255, 246, 211)); // Cor de fundo verde claro, ajuste conforme necessário
+
+        lbvalor1 = new JLabel("Valor 1: ");
+        lbvalor1.setBounds(50, 100, 100, 35); // Posição x,y e largura e altura
+        add(lbvalor1);
+
+        lbvalor2 = new JLabel("Valor 2: ");
+        lbvalor2.setBounds(50, 150, 100, 35); // Posição x,y e largura e altura
+        add(lbvalor2);
+
+        txnumero1 = new JTextField();
+        txnumero1.setBounds(150, 100, 150, 35); // Ajustei a posição e largura para alinhar com lb
+        txnumero1.setBorder(BorderFactory.createLineBorder(Color.WHITE)); // Corrigido
+        add(txnumero1);
+
+        txnumero2 = new JTextField();
+        txnumero2.setBounds(150, 150, 150, 35); // Ajustei a posição e largura para alinhar com lb
+        txnumero2.setBorder(BorderFactory.createLineBorder(Color.WHITE)); // Corrigido
+        add(txnumero2);
+
+        btSomar = new JButton("Somar");
+        btSomar.setBounds(50, 200, 100, 35);
+        btSomar.setFont(new Font("Arial", Font.BOLD, 10));
+        btSomar.setForeground(Color.WHITE);
+        btSomar.setBackground(new Color(242, 202, 232));
+        add(btSomar);
+
+        btSubtrair = new JButton("Subtrair");
+        btSubtrair.setBounds(160, 200, 100, 35);
+        btSubtrair.setFont(new Font("Arial", Font.BOLD, 10));
+        btSubtrair.setForeground(Color.WHITE);
+        btSubtrair.setBackground(new Color(242, 202, 232));
+        add(btSubtrair);
+
+        btDivisao = new JButton("Dividir");
+        btDivisao.setBounds(270, 200, 100, 35);
+        btDivisao.setFont(new Font("Arial", Font.BOLD, 10));
+        btDivisao.setForeground(Color.WHITE);
+        btDivisao.setBackground(new Color(242, 202, 232));
+        add(btDivisao);
+
+        btMultiplicar = new JButton("Multiplicar");
+        btMultiplicar.setBounds(380, 200, 100, 35);
+        btMultiplicar.setFont(new Font("Arial", Font.BOLD, 10));
+        btMultiplicar.setForeground(Color.WHITE);
+        btMultiplicar.setBackground(new Color(242, 202, 232));
+        add(btMultiplicar);
+
+        // Adicionar ActionListener para o botão Somar
+        btSomar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                processarOperacao("Somar");
+            }
+        });
+
+        // Adicionar ActionListener para o botão Subtrair
+        btSubtrair.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                processarOperacao("Subtrair");
+            }
+        });
+
+        // Adicionar ActionListener para o botão Dividir
+        btDivisao.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                processarOperacao("Dividir");
+            }
+        });
+
+        // Adicionar ActionListener para o botão Multiplicar
+        btMultiplicar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                processarOperacao("Multiplicar");
+            }
+        });
+
+        setVisible(true); // SEMPRE A ÚLTIMA LINHA (False por padrão)
+    }
+
+   
+    // Método para processar a operação com base no tipo
+    private void processarOperacao(String tipo) {
+        String texto1 = txnumero1.getText();
+        String texto2 = txnumero2.getText();
+        
+    
+
+        double num1 = Double.parseDouble(texto1);
+        double num2 = Double.parseDouble(texto2);
+        double resultado = 0;
+        String mensagem = "";
+
+        switch (tipo) {
+            case "Somar":
+                resultado = num1 + num2;
+                mensagem = "Resultado da soma: ";
+                break;
+            case "Subtrair":
+                resultado = num1 - num2;
+                mensagem = "Resultado da subtração: ";
+                break;
+            case "Dividir":
+                if (num2 == 0) {
+                    JOptionPane.showMessageDialog(null, "Não é possível dividir por zero.");
+                    return;
+                }
+                resultado = num1 / num2;
+                mensagem = "Resultado da divisão: ";
+                break;
+            case "Multiplicar":
+                resultado = num1 * num2;
+                mensagem = "Resultado da multiplicação: ";
+                break;
+            
+        }
+
+        JOptionPane.showMessageDialog(null, mensagem + resultado);
+    }
+
+}
