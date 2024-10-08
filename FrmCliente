@@ -1,0 +1,71 @@
+import javax.swing.*;
+import java.awt.Color;
+
+public class FrmCliente extends JDialog {
+    private JLabel lbNome;
+    private JLabel lbEmail;
+    private JLabel lbCpf;
+    private JLabel lbSenha;
+
+    private JTextField txNome;
+    private JTextField txEmail;
+    private JTextField txCpf;
+    private JTextField txSenha;
+
+    public FrmCliente() {
+        this.setTitle("Cadastro de Clientes");
+        this.setModal(true);
+        setSize(800, 600);  // Largura e altura (pixels)
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Libera da memória ao fechar
+        setLayout(null);
+        setResizable(false); // Não será possível redimensionar a janela
+        setLocationRelativeTo(null); // Centraliza a janela na tela
+
+        // Definir a cor de fundo da janela
+        getContentPane().setBackground(new Color(242, 208, 241));
+
+        lbNome = new JLabel("Nome: ");
+        lbNome.setBounds(50, 100, 100, 35); // Posição x,y e largura e altura
+        add(lbNome);
+
+        lbEmail = new JLabel("Email: ");
+        lbEmail.setBounds(50, 150, 100, 35); // Posição x,y e largura e altura
+        add(lbEmail);
+        
+        lbCpf = new JLabel("CPF: ");
+        lbCpf.setBounds(50, 200, 100, 35); // Posição x,y e largura e altura
+        add(lbCpf);
+        
+        lbSenha = new JLabel("Senha: ");
+        lbSenha.setBounds(50, 250, 100, 35); // Posição x,y e largura e altura
+        add(lbSenha);
+
+        txNome = new JTextField();
+        txNome.setBounds(150, 100, 150, 35); // Ajustei a posição e largura para alinhar com lb
+        txNome.setBorder(BorderFactory.createLineBorder(Color.GRAY)); // Corrigido
+        add(txNome);
+
+        txEmail = new JTextField();
+        txEmail.setBounds(150, 150, 150, 35); // Ajustei a posição e largura para alinhar com lb
+        txEmail.setBorder(BorderFactory.createLineBorder(Color.GRAY)); // Corrigido
+        add(txEmail);
+
+        txCpf = new JTextField();
+        txCpf.setBounds(150, 200, 150, 35); // Ajustei a posição e largura para alinhar com lb
+        txCpf.setBorder(BorderFactory.createLineBorder(Color.GRAY)); // Corrigido
+        add(txCpf);
+
+        txSenha = new JTextField();
+        txSenha.setBounds(150, 250, 150, 35); // Ajustei a posição e largura para alinhar com lb
+        txSenha.setBorder(BorderFactory.createLineBorder(Color.GRAY)); // Corrigido
+        add(txSenha);
+
+        // Adicione um botão para enviar ou salvar os dados, se necessário
+        JButton btEnviar = new JButton("Enviar");
+        btEnviar.setBounds(150, 300, 100, 35);
+        add(btEnviar);
+
+        this.setVisible(true); // Tornar a janela visível
+    }
+
+}
