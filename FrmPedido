@@ -1,0 +1,105 @@
+import javax.swing.*;
+import javax.swing.JOptionPane; // Importar JOptionPane
+import javax.swing.BorderFactory; // Importar BorderFactory
+import java.awt.Color;
+import java.awt.Font;
+
+public class FrmPedido extends JDialog {
+    
+    private JLabel lbDataPedido;
+    private JLabel lbEntrega;
+    private JLabel lbNomeProduto;
+    private JLabel lbQuantidade;    
+    private JLabel lbNomeCliente;
+    private JLabel lbCategoria;
+
+    private JTextField txDataPedido;
+    private JTextField txEntrega;
+    private JTextField txNomeProduto;
+    private JTextField txCategoria;
+    private JTextField txQuantidade;
+    private JTextField txNomeCliente;
+    
+    private JButton btEnviar;
+
+    public FrmPedido() {
+        this.setTitle("Pedido");
+        this.setModal(true);
+        setSize(400, 400);  
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE); 
+        setLayout(null);
+        setResizable(false); 
+        setLocationRelativeTo(null); 
+        
+
+        // Definir a cor de fundo da janela
+        getContentPane().setBackground(new Color(242, 208, 241));
+
+        // Definir os rótulos e campos de texto
+        lbNomeProduto = new JLabel("Nome do Produto:");
+        lbNomeProduto.setBounds(50, 20, 150, 25);
+        add(lbNomeProduto);
+        
+        lbNomeCliente = new JLabel("Nome do Cliente:");
+        lbNomeCliente.setBounds(50, 60, 150, 25);
+        add(lbNomeCliente);
+        
+        lbCategoria = new JLabel("Categoria:");
+        lbCategoria.setBounds(50, 100, 150, 25);
+        add(lbCategoria);
+        
+        lbQuantidade = new JLabel("Quantidade:");
+        lbQuantidade.setBounds(50, 140, 150, 25);
+        add(lbQuantidade);
+        
+        lbEntrega = new JLabel("Entrega:");
+        lbEntrega.setBounds(50, 180, 150, 25);
+        add(lbEntrega);
+        
+        lbDataPedido = new JLabel("Data do Pedido:");
+        lbDataPedido.setBounds(50, 220, 150, 25);
+        add(lbDataPedido);
+        
+        txNomeProduto = new JTextField();
+        txNomeProduto.setBounds(200, 20, 150, 25);
+        txNomeProduto.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+        add(txNomeProduto);
+        
+        txNomeCliente = new JTextField();
+        txNomeCliente.setBounds(200, 60, 150, 25);
+        txNomeCliente.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+        add(txNomeCliente);
+        
+        txCategoria = new JTextField();
+        txCategoria.setBounds(200, 100, 150, 25);
+        txCategoria.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+        add(txCategoria);
+        
+        txQuantidade = new JTextField();
+        txQuantidade.setBounds(200, 140, 150, 25);
+        txQuantidade.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+        add(txQuantidade);
+        
+        txEntrega = new JTextField();
+        txEntrega.setBounds(200, 180, 150, 25);
+        txEntrega.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+        add(txEntrega);
+        
+        txDataPedido = new JTextField();
+        txDataPedido.setBounds(200, 220, 150, 25);
+        txDataPedido.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+        add(txDataPedido);
+        
+        btEnviar = new JButton("Enviar");
+        btEnviar.setBounds(150, 280, 100, 30);
+        btEnviar.setFont(new Font("Arial", Font.BOLD, 12));
+        btEnviar.setForeground(Color.WHITE);
+        btEnviar.setBackground(new Color(242, 202, 232));
+        add(btEnviar);
+    }
+
+    public static void main(String[] args) {
+        FrmPedido dialog = new FrmPedido();
+        dialog.setVisible(true);
+    }
+}
