@@ -1,0 +1,14 @@
+import java.awt.Color;
+
+import javax.swing.JDialog;
+public class FrmProduto extends JDialog{
+    
+	public FrmProduto() {		
+		this.setTitle("Nossos produtos");
+	    this.setModal(true);
+	    this.setSize(500,470);  
+	    this.setResizable(false);
+	    // Definir a cor de fundo da janela
+        getContentPane().setBackground(new Color(242, 208, 241));    this.setLocationRelativeTo(null);	
+    }
+}
