@@ -1,0 +1,92 @@
+import java.awt.event.*;
+import javax.swing.*;
+
+public class Menu extends JFrame {
+
+    public Menu() {
+        this.setSize(800, 600);
+        this.setTitle("Exemplo Menu");
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setLocationRelativeTo(null);
+        this.setExtendedState(MAXIMIZED_BOTH);
+
+        JMenu arq = new JMenu("Arquivo");
+        JMenu cad = new JMenu("Cadastrar");
+        JMenu aju = new JMenu("Ajuda");
+
+        JMenuItem sair = new JMenuItem("Sair");
+        JMenuItem alu = new JMenuItem("Categoria");
+        JMenuItem po = new JMenuItem("Produto");
+        JMenuItem cli = new JMenuItem("Cliente");
+        JMenuItem pe = new JMenuItem("Pedido");
+        JMenuItem exemploJTabbedPane = new JMenuItem("JTabbedPane");
+        JMenuItem sobre = new JMenuItem("Sobre");
+
+        // Adicionando itens ao menu
+        arq.add(sair);
+        cad.add(alu);
+        cad.add(po);
+        cad.add(cli);
+        cad.add(pe);
+        cad.add(exemploJTabbedPane);
+        aju.add(sobre);
+
+        JMenuBar bar = new JMenuBar();
+        setJMenuBar(bar);
+        bar.add(arq);
+        bar.add(cad);
+        bar.add(aju);
+
+        // Ação para sair
+        sair.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                System.exit(0);
+            }
+        });
+
+        // Ação para abrir Categoria
+        alu.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                FrmCategoria frmCategoria = new FrmCategoria(); // Certifique-se de que esta classe existe
+                frmCategoria.setVisible(true);
+            }
+        });
+
+        // Ação para abrir Produto
+        po.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                FrmProduto frmProduto = new FrmProduto(); // Certifique-se de que esta classe existe
+                frmProduto.setVisible(true);
+            }
+        });
+
+        // Ação para abrir Cliente
+        cli.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                FrmCliente frmCliente = new FrmCliente(); // Certifique-se de que esta classe existe
+                frmCliente.setVisible(true); // Corrigido para frmCliente
+            }
+        });
+
+        // Ação para abrir Pedido
+        pe.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                FrmPedido frmPedido = new FrmPedido(); // Certifique-se de que esta classe existe
+                frmPedido.setVisible(true);
+            }
+        });
+
+        // Ação para abrir JTabbedPane
+        exemploJTabbedPane.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                ObjetoJTabbedPane otp = new ObjetoJTabbedPane(); // Certifique-se de que esta classe existe
+                otp.setVisible(true);
+            }
+        });
+
+        this.setVisible(true);
+    }
+
+
+    
+}
