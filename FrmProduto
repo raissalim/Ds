@@ -1,14 +1,176 @@
 import java.awt.Color;
-
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JDialog;
-public class FrmProduto extends JDialog{
-    
-	public FrmProduto() {		
-		this.setTitle("Nossos produtos");
-	    this.setModal(true);
-	    this.setSize(500,470);  
-	    this.setResizable(false);
-	    // Definir a cor de fundo da janela
-        getContentPane().setBackground(new Color(242, 208, 241));    this.setLocationRelativeTo(null);	
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
+public class Produto extends JDialog {
+    private JLabel blush;
+    private JLabel rimel;
+    private JLabel bolaPilates;
+
+    private JTextField txblush;
+    private JTextField txrimel;
+    private JTextField txbolaPilates;
+    private JButton btEntrada;
+
+    // Preços dos produtos
+    private final double PRECO_BLUH = 30.0;
+    private final double PRECO_RIMEL = 25.0;
+    private final double PRECO_BOLA_PILATES = 50.0;
+
+    public Produto() {		
+        this.setTitle("Nossos produtos");
+        this.setModal(true);
+        this.setSize(600, 300);  // Aumentei a largura para acomodar os campos
+        this.setResizable(false);
+        getContentPane().setBackground(new Color(242, 208, 241));
+        this.setLocationRelativeTo(null);	
+        
+        blush = new JLabel("Blush: ");
+        blush.setBounds(50, 50, 100, 35);
+        add(blush);
+
+        rimel = new JLabel("Rímel: ");
+        rimel.setBounds(50, 100, 100, 35);
+        add(rimel);
+        
+        bolaPilates = new JLabel("Bola de Pilates: ");
+        bolaPilates.setBounds(50, 150, 150, 35);
+        add(bolaPilates);
+
+        txblush = new JTextField();
+        txblush.setBounds(150, 50, 100, 35); // Ajustado para caber na linha
+        txblush.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+        add(txblush);
+
+        txrimel = new JTextField();
+        txrimel.setBounds(150, 100, 100, 35); // Ajustado para caber na linha
+        txrimel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+        add(txrimel);
+
+        txbolaPilates = new JTextField();
+        txbolaPilates.setBounds(150, 150, 100, 35); // Ajustado para caber na linha
+        txbolaPilates.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+        add(txbolaPilates);
+        
+        // Botão de entrada
+        btEntrada = new JButton("Comprar");
+        btEntrada.setBounds(300, 100, 100, 35); // Alinhado com os campos
+        btEntrada.setFont(new Font("Arial", Font.BOLD, 15));
+        btEntrada.setForeground(Color.WHITE);
+        btEntrada.setBackground(new Color(90, 90, 240));
+        btEntrada.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
+        btEntrada.setFocusPainted(false);
+
+        // Efeito de hover (passar o mouse)
+        btEntrada.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                btEntrada.setBackground(new Color(70, 70, 220));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                btEntrada.setBackground(new Color(90, 90, 240));
+            }
+        });
+
+        // Ação do botão
+        btEntrada.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Primeira caixa de diálogo com opções
+                JCheckBox maquiagemCheckBox = new JCheckBox("Maquiagem");
+                JCheckBox pilatesCheckBox = new JCheckBox("Pilates");
+
+                Object[] options1 = {maquiagemCheckBox, pilatesCheckBox, "OK"};
+
+                // Mostra a primeira caixa de diálogo
+                int result1 = JOptionPane.showOptionDialog(Produto.this,
+                        "Selecione suas opções:",
+                        "Caixa de Diálogo",
+                        JOptionPane.DEFAULT_OPTION,
+                        JOptionPane.INFORMATION_MESSAGE,
+                        null, options1, options1[2]);
+
+                // Exibe o resultado da seleção da primeira caixa de diálogo
+                if (result1 == 2) {
+                    String message = "Você selecionou: ";
+                    message += maquiagemCheckBox.isSelected() ? "Maquiagem " : "";
+                    message += pilatesCheckBox.isSelected() ? "Pilates " : "";
+
+                    JOptionPane.showMessageDialog(Produto.this,
+                            message.isEmpty() ? "Nenhuma opção selecionada!" : message);
+                }
+
+                // Terceira caixa de diálogo com opções de Blush, Rímel e Bola de Pilates
+                JCheckBox blushCheckBox = new JCheckBox("Blush");
+                JCheckBox rimelCheckBox = new JCheckBox("Rímel");
+                JCheckBox bolaPilatesCheckBox = new JCheckBox("Bola de Pilates");
+
+                Object[] options2 = {blushCheckBox, rimelCheckBox, bolaPilatesCheckBox, "OK"};
+
+                // Mostra a terceira caixa de diálogo
+                int result2 = JOptionPane.showOptionDialog(Produto.this,
+                        "Selecione os produtos:",
+                        "Caixa de Diálogo de Produtos",
+                        JOptionPane.DEFAULT_OPTION,
+                        JOptionPane.INFORMATION_MESSAGE,
+                        null, options2, options2[3]);
+
+                // Exibe o resultado da seleção da terceira caixa de diálogo
+                if (result2 == 3) {
+                    String message2 = "Você selecionou: ";
+                    message2 += blushCheckBox.isSelected() ? "Blush " : "";
+                    message2 += rimelCheckBox.isSelected() ? "Rímel " : "";
+                    message2 += bolaPilatesCheckBox.isSelected() ? "Bola de Pilates " : "";
+
+                    // Solicita a quantidade de cada produto
+                    String quantidadeBlush = JOptionPane.showInputDialog(Produto.this, 
+                            "Digite a quantidade de Blush:", 
+                            "Quantidade de Blush", 
+                            JOptionPane.PLAIN_MESSAGE);
+                    
+                    String quantidadeRimel = JOptionPane.showInputDialog(Produto.this, 
+                            "Digite a quantidade de Rímel:", 
+                            "Quantidade de Rímel", 
+                            JOptionPane.PLAIN_MESSAGE);
+                    
+                    String quantidadeBolaPilates = JOptionPane.showInputDialog(Produto.this, 
+                            "Digite a quantidade de Bola de Pilates:", 
+                            "Quantidade de Bola de Pilates", 
+                            JOptionPane.PLAIN_MESSAGE);
+
+                    // Cálculo do total
+                    double total = 0.0;
+
+                    if (blushCheckBox.isSelected() && quantidadeBlush != null) {
+                        total += PRECO_BLUH * Integer.parseInt(quantidadeBlush);
+                    }
+                    if (rimelCheckBox.isSelected() && quantidadeRimel != null) {
+                        total += PRECO_RIMEL * Integer.parseInt(quantidadeRimel);
+                    }
+                    if (bolaPilatesCheckBox.isSelected() && quantidadeBolaPilates != null) {
+                        total += PRECO_BOLA_PILATES * Integer.parseInt(quantidadeBolaPilates);
+                    }
+
+                    // Exibe o total
+                    JOptionPane.showMessageDialog(Produto.this,
+                            "Total: R$ " + String.format("%.2f", total));
+                }
+            }
+        });
+
+        add(btEntrada);
+        setLayout(null); // Usar layout nulo para definir posições manualmente
     }
 }
