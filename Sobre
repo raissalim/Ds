@@ -1,0 +1,24 @@
+import java.awt.Color;
+import java.awt.Color;
+import javax.swing.JOptionPane;
+import javax.swing.JDialog;
+
+public class Sobre extends JDialog {
+
+	
+	 public Sobre() {
+	        this.setTitle("Informaçoes adiconais");
+	        this.setModal(true);
+	        setSize(800, 600);  // Largura e altura (pixels)
+	        setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Libera da memória ao fechar
+	        setLayout(null);
+	        setResizable(false); // Não será possível redimensionar a janela
+	        setLocationRelativeTo(null); // Centraliza a janela na tela
+
+	        // Definir a cor de fundo da janela
+	        getContentPane().setBackground(new Color(242, 208, 241));
+	        
+	        this.setVisible(true);
+	        setLayout(null);
+   }
+}
