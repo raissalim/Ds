@@ -1,18 +1,81 @@
 import javax.swing.JDialog;
+import javax.swing.JButton;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane; // Importar JOptionPane
-import javax.swing.BorderFactory; // Importar BorderFactory
+import javax.swing.JCheckBox; // Importar JCheckBox
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class FrmCategoria extends JDialog {
-	public FrmCategoria() {		
-		this.setTitle("Categoria Dos Nossos Produtos");
-	    this.setModal(true);
-	    this.setSize(500,470);  
-	    this.setResizable(false);
-	    this.setLocationRelativeTo(null);	
+    private JButton btEntrada;
+
+    public FrmCategoria() {
+        this.setTitle("Categoria Dos Nossos Produtos");
+        this.setModal(true);
+        this.setSize(500, 470);
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
 
         // Definir a cor de fundo da janela
         getContentPane().setBackground(new Color(242, 208, 241));
-  }
+
+        // Botão de entrada
+        btEntrada = new JButton("Entrada");
+        btEntrada.setBounds(200, 200, 100, 35);
+        btEntrada.setFont(new Font("Arial", Font.BOLD, 15));
+        btEntrada.setForeground(Color.WHITE);
+        btEntrada.setBackground(new Color(90, 90, 240)); // Cor de fundo do botão
+        btEntrada.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2)); // Borda do botão
+        btEntrada.setFocusPainted(false); // Remove a borda quando o botão está em foco
+
+        // Efeito de hover (passar o mouse)
+        btEntrada.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                btEntrada.setBackground(new Color(70, 70, 220)); // Cor ao passar o mouse
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                btEntrada.setBackground(new Color(90, 90, 240)); // Cor original
+            }
+        });
+
+        // Ação do botão
+        btEntrada.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Criação da caixa de diálogo
+                JCheckBox maquiagemCheckBox = new JCheckBox("Maquiagem");
+                JCheckBox pilatesCheckBox = new JCheckBox("Pilates");
+
+                Object[] options = {maquiagemCheckBox, pilatesCheckBox, "OK"};
+
+                // Mostra a caixa de diálogo
+                int result = JOptionPane.showOptionDialog(FrmCategoria.this,
+                        "Selecione suas opções:",
+                        "Caixa de Diálogo",
+                        JOptionPane.DEFAULT_OPTION,
+                        JOptionPane.INFORMATION_MESSAGE,
+                        null, options, options[2]);
+
+                // Exibe o resultado da seleção
+                if (result == 2) {
+                    String message = "Você selecionou: ";
+                    message += maquiagemCheckBox.isSelected() ? "Maquiagem " : "";
+                    message += pilatesCheckBox.isSelected() ? "Pilates " : "";
+
+                    JOptionPane.showMessageDialog(FrmCategoria.this,
+                            message.isEmpty() ? "Nenhuma opção selecionada!" : message);
+                }
+            }
+        });
+
+        add(btEntrada);
+        setLayout(null); // Usar layout nulo para definir posições manualmente
+    }
 }
