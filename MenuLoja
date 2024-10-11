@@ -47,7 +47,7 @@ public class Menu extends JFrame {
         // Ação para abrir Categoria
         alu.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                FrmCategoria frmCategoria = new FrmCategoria(); // Certifique-se de que esta classe existe
+                FrmCategoria frmCategoria = new FrmCategoria();
                 frmCategoria.setVisible(true);
             }
         });
@@ -55,7 +55,7 @@ public class Menu extends JFrame {
         // Ação para abrir Produto
         po.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                FrmProduto frmProduto = new FrmProduto(); // Certifique-se de que esta classe existe
+                Produto frmProduto = new Produto();
                 frmProduto.setVisible(true);
             }
         });
@@ -63,15 +63,15 @@ public class Menu extends JFrame {
         // Ação para abrir Cliente
         cli.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                FrmCliente frmCliente = new FrmCliente(); // Certifique-se de que esta classe existe
-                frmCliente.setVisible(true); // Corrigido para frmCliente
+                FrmCliente frmCliente = new FrmCliente();
+                frmCliente.setVisible(true);
             }
         });
 
         // Ação para abrir Pedido
         pe.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                FrmPedido frmPedido = new FrmPedido(); // Certifique-se de que esta classe existe
+                FrmPedido frmPedido = new FrmPedido();
                 frmPedido.setVisible(true);
             }
         });
@@ -79,14 +79,28 @@ public class Menu extends JFrame {
         // Ação para abrir JTabbedPane
         exemploJTabbedPane.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                ObjetoJTabbedPane otp = new ObjetoJTabbedPane(); // Certifique-se de que esta classe existe
+                TabbedPane otp = new TabbedPane();
                 otp.setVisible(true);
+            }
+        });
+
+        // Ação para abrir a janela "Sobre"
+        sobre.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                JOptionPane.showMessageDialog(Menu.this,
+                        "Na  MRA, nosso compromisso é proporcionar a você uma experiência de compra excepcional, com produtos de qualidade e um atendimento que faz a diferença. Seja você um cliente novo ou um parceiro de longa data."
+                        + "\r\n"
+                        + "\r\n"
+                        + "Email:mra123@gmail.com\r\n"
+                        + "Telefone:11986781243\r\n"
+                        + "@MraOficial"
+
+                        + "Descrição: Este é um exemplo de menu em Java.",
+                        "Sobre",
+                        JOptionPane.INFORMATION_MESSAGE);
             }
         });
 
         this.setVisible(true);
     }
-
-
-    
 }
