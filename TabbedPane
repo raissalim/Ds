@@ -8,18 +8,18 @@ import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class ObjetoJTabbedPane extends JDialog{
+public class TabbedPane extends JDialog{
    	
 	private JLabel lbNome;   
 	private JTextField txNome;
 	private JButton btCadastrar;
 
-   public ObjetoJTabbedPane(){     
+   public TabbedPane(){     
      this.setTitle("Cadastro de Clientes");
      this.setModal(true);
      this.setSize(500,470);  
      this.setResizable(false);  
-   
+
      Container janelacalc = this.getContentPane();
      setLocationRelativeTo(janelacalc);
      janelacalc.setLayout(null);
@@ -43,7 +43,7 @@ public class ObjetoJTabbedPane extends JDialog{
 	  txNome.setBounds(55, 15, 150, 20);
 	  painel1.add(txNome);
 	  
-	  btCadastrar = new JButton("Cadastrar");
+	  btCadastrar = new JButton("Enviar");
 	  btCadastrar.setBounds(15,350,100,20);
 	  painel1.add(btCadastrar);
 	
@@ -57,13 +57,13 @@ public class ObjetoJTabbedPane extends JDialog{
 	  painel2.setLayout(null);
 	  painel2.setBackground(Color.WHITE);  
 	  
-	  tabbedpane.addTab("Aba 2", null,painel2,"Segundo Painel");  
+	  tabbedpane.addTab("Aba 2", null,painel2,"Combos");  
 	  
 	  //terceira guia
 	  JPanel painel3 = new JPanel(); 
 	  painel3.setLayout(null);
 	  
-	  tabbedpane.addTab("Aba 3", null,painel3,"Terceiro Painel");  
+	  tabbedpane.addTab("Aba 3", null,painel3,"Cupons");  
 	
 	  janelacalc.add(tabbedpane);   
 
