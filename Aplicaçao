@@ -1,0 +1,35 @@
+package prjProdutoDao;
+
+import java.sql.SQLException;  
+import DAO.ProdutoDAO;
+import Model.Produto;
+import java.util.List;  
+import java.util.ArrayList;  
+
+public class Aplicaçao {  // Corrigido o nome da classe para "Aplicacao"
+
+    public static void main(String[] args) throws SQLException {  // Removido o "throws SQLException" e adicionado tratamento de exceção
+      
+            Produto produto = new Produto();
+            produto.setIdProduto(5);
+            produto.setProduto("ola");
+            produto.setValorProduto(7);
+            
+            ProdutoDAO produtoDao = new ProdutoDAO();
+          
+            //produtoDao.adicionar(produto);
+            
+         
+            //produtoDao.alterar(produto);
+            
+            
+            produtoDao.excluir(produto);
+            
+            List<Produto> produtos = new ProdutoDAO().getLista();
+            
+            for(Produto pro: produtos) {
+            System.out.println(pro.getIdProduto()+" "+ pro.getProduto()+" "+ pro.getValorProduto());
+            
+        } 
+    }
+}
