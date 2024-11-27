@@ -1,0 +1,228 @@
+package prjtMenuCrudVSecrets;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+import model.Cliente;
+import java.sql.SQLException;
+import java.util.List;
+import dao.ClienteDao;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+
+public class ClienteCadastrar extends JFrame{
+	private JLabel lbCampo;
+	private JLabel lbTitulo;
+	private JTextField txCampo1;
+	private JTextField txCampo2;
+	private JTextField txCampo3;
+	private JTextField txCampo4;	
+	private JTextField txCampo5;
+	private JTextField txCampo6;
+	private JLabel loadImage(String fileName) {
+        try {
+            BufferedImage image = ImageIO.read(new File(fileName));
+            return new JLabel(new ImageIcon(image));
+        } catch (Exception e) {
+            System.out.println("Erro ao carregar a imagem: " + e.getMessage());
+            return null;
+        }
+    }
+	private JButton btCadastrar;
+	
+	public ClienteCadastrar() {           
+        JMenuBar barraMenu = new JMenuBar();
+        JMenu menuArquivo = new JMenu("Arquivo");
+        JMenuItem itemSair = new JMenuItem("Sair");
+        itemSair.addActionListener(e -> System.exit(0));
+        menuArquivo.add(itemSair);
+        
+        JMenu menuAcoes = new JMenu("Ações");
+	        JMenuItem itemAlterar = new JMenuItem("Alterar Dados");
+	        JMenuItem itemExcluir = new JMenuItem("Excluir Dados");
+	        JMenuItem itemVisualizar = new JMenuItem("Visualizar Dados");
+
+        menuAcoes.add(itemAlterar);
+        menuAcoes.add(itemVisualizar);
+        menuAcoes.add(itemExcluir);
+        
+        itemAlterar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new ClienteAlterar();
+            }
+        });
+        itemVisualizar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new ClienteVisualizar();
+            }
+        });
+        itemExcluir.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new ClienteExcluir();
+            }
+        });              
+        barraMenu.add(menuAcoes);
+        setJMenuBar(barraMenu);
+		
+        
+		setTitle("Cadastrar Novo Cliente");
+        setSize(700, 430);
+		setLocationRelativeTo(null);
+		setLayout(null);
+		setResizable(false);
+		getContentPane().setBackground(Color.decode("#D9D8BF"));
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        lbTitulo = new JLabel();
+		lbTitulo.setText("Cadastre um Cliente");
+		lbTitulo.setForeground(Color.decode("#00000000"));
+		lbTitulo.setFont(new Font("Arial", Font.ITALIC |Font.BOLD, 27));
+		lbTitulo.setBounds(150,-4,590,100);
+		add(lbTitulo);
+		
+		
+		JLabel imageLabel = loadImage("D:\\2º Ano\\Tecnico\\D.S\\prjtMenuCrudVSecrets\\src\\logoKisses.png");
+        if (imageLabel != null) {
+            imageLabel.setBounds(70, 3, 80, 80); 
+            this.add(imageLabel);
+        }
+                                               
+        lbCampo = new JLabel();
+		lbCampo.setText("Nome:");
+		lbCampo.setBackground(Color.decode("#FFEDF1"));
+		lbCampo.setFont(new Font("Arial", Font.BOLD, Font.ITALIC | 18));
+		lbCampo.setBounds(82,80,265,40);
+		add(lbCampo);
+		
+		txCampo1 = new JTextField();
+		txCampo1.setBounds(82,114,250,27);
+		txCampo1.setBackground(Color.decode("#ffffff"));
+		add(txCampo1);
+
+		
+		lbCampo = new JLabel();
+		lbCampo.setText("CPF:");
+		lbCampo.setFont(new Font("Arial", Font.BOLD, Font.ITALIC | 18));
+		lbCampo.setBounds(368,80,265,40);
+		add(lbCampo);
+		 
+		txCampo2 = new JTextField();
+		txCampo2.setBounds(368,114,250,27);
+		txCampo2.setBackground(Color.decode("#FAF9F6"));
+		add(txCampo2);
+
+		
+		lbCampo = new JLabel();
+		lbCampo.setText("E-Mail:");
+		lbCampo.setFont(new Font("Arial", Font.BOLD, Font.ITALIC | 18));
+		lbCampo.setBounds(82,150,265,40);
+		add(lbCampo);
+		
+		txCampo3 = new JTextField();
+		txCampo3.setBounds(82,184,250,27);
+		txCampo3.setBackground(Color.decode("#FAF9F6"));
+		add(txCampo3);		
+		
+		lbCampo = new JLabel();
+		lbCampo.setText("Telefone:");
+		lbCampo.setFont(new Font("Arial", Font.BOLD, Font.ITALIC  |18));
+		lbCampo.setBounds(368,150,271,40);
+		add(lbCampo);
+		
+		txCampo4 = new JTextField();
+		txCampo4.setBounds(368,184,250,27);
+		txCampo4.setBackground(Color.decode("#FAF9F6"));
+		add(txCampo4);
+		
+		lbCampo = new JLabel();
+		lbCampo.setText("CEP:");
+		lbCampo.setFont(new Font("Arial", Font.BOLD, Font.ITALIC  |18));
+		lbCampo.setBounds(82,220,271,40);
+		add(lbCampo);
+		
+		txCampo5 = new JTextField();
+		txCampo5.setBounds(82,254,250,27);
+		txCampo5.setBackground(Color.decode("#FAF9F6"));
+		add(txCampo5);
+		
+		lbCampo = new JLabel();
+		lbCampo.setText("Nascimento:");
+		lbCampo.setFont(new Font("Arial", Font.BOLD, Font.ITALIC  |18));
+		lbCampo.setBounds(368,220,271,40);
+		add(lbCampo);
+		
+		txCampo6 = new JTextField();
+		txCampo6.setBounds(368,254,250,27);
+		txCampo6.setBackground(Color.decode("#FAF9F6"));
+		add(txCampo6);
+
+		
+		btCadastrar = new JButton();
+		btCadastrar.setBounds(165,325,370,30);
+		btCadastrar.setText("Cadastrar Cliente");
+		add(btCadastrar);
+		
+		try {
+            BufferedImage img = ImageIO.read(new File("D:\\2º Ano\\Tecnico\\D.S\\telas\\src\\bgCadastros.png")); 
+            Image dimg = img.getScaledInstance(700, 500, Image.SCALE_SMOOTH);
+            ImageIcon imageIcon = new ImageIcon(dimg);
+
+            JLabel label = new JLabel(imageIcon);
+            label.setBounds(0, 0, 700, 430);
+            getContentPane().add(label);
+            getContentPane().setComponentZOrder(label, getContentPane().getComponentCount() - 1);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Erro ao carregar a imagem de fundo: " + e.getMessage());
+        }	
+		
+		
+		btCadastrar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+			        String nomeCli = txCampo1.getText();
+			        int cpfCli = Integer.parseInt(txCampo2.getText());
+			        String emailCli = txCampo3.getText();
+			        int foneCli = Integer.parseInt(txCampo4.getText());
+			        int cepCli = Integer.parseInt(txCampo5.getText());
+			        String dNascCli = txCampo6.getText();			        
+
+			        Cliente cliente = new Cliente();
+			        cliente.setNomeCliente(nomeCli);
+			        cliente.setCpfCliente(cpfCli);
+			        cliente.setEmailCliente(emailCli);
+			        cliente.setFoneCliente(foneCli);
+			        cliente.setCepCliente(cepCli);
+			        cliente.setDataNascCliente(dNascCli);
+
+			        ClienteDao clienteDao = new ClienteDao();
+			        clienteDao.adicionar(cliente);
+
+			        JOptionPane.showMessageDialog(null, "Cliente Cadastrado com Sucesso!");
+			    } catch (Exception ex) {
+			        JOptionPane.showMessageDialog(null, "Erro ao cadastrar o cliente: " + ex.getMessage());
+			    }
+			}
+			
+		});
+		
+        setVisible(true);
+	}	
+}
