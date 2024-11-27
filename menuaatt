@@ -1,0 +1,200 @@
+package prjtMenuCrudVSecrets;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import javax.imageio.ImageIO;
+
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.sql.SQLException;
+import java.util.List;
+import dao.ProdutoDao;
+import model.Produto;
+
+
+public class TelasMenu extends JFrame {
+	private JLabel lbTitulo;
+	private JLabel lbSubTitulo;
+	private JLabel lbTxtP;
+	private JLabel loadImage(String fileName) {
+        try {
+            BufferedImage image = ImageIO.read(new File(fileName));
+            return new JLabel(new ImageIcon(image));
+        } catch (Exception e) {
+            System.out.println("Erro ao carregar a imagem: " + e.getMessage());
+            return null;
+        }
+    }
+	//FAZER A VISUALIZAÇÃO DA CATEGORIA E OS OUTROS 2
+	
+	public TelasMenu() {//construdor feio e ridiculo 
+        setTitle("Telas de Menu");
+        setSize(900, 500);
+		setLocationRelativeTo(null);
+		setLayout(null);
+		setResizable(false);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+                        
+        /*JPanel panel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g;
+                // Gradiente vertical: de cima (#000000) para baixo (#ffffff)
+                GradientPaint gradient = new GradientPaint(0, 0, Color.decode("#FBC6D7"), 0, getHeight(), Color.decode("#ffffff"));
+                g2d.setPaint(gradient);
+                g2d.fillRect(0, 0, getWidth(), getHeight());
+            }
+        };*/              
+        JPanel panel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g;
+                GradientPaint gradient = new GradientPaint(0, 0, Color.decode("#FBC6D7"), getWidth(), getHeight(), Color.decode("#ffffff"));
+                g2d.setPaint(gradient);
+                g2d.fillRect(0, 0, getWidth(), getHeight());             
+        }
+    };
+
+    setContentPane(panel);
+    panel.setLayout(null);
+                                                  
+        
+        JMenuBar barraMenu = new JMenuBar();
+        
+        JMenu menuArquivo = new JMenu("Arquivo");
+        JMenuItem itemSair = new JMenuItem("Sair");
+        itemSair.addActionListener(e -> System.exit(0));
+        menuArquivo.add(itemSair);
+
+        
+        JMenu menuCadastrar = new JMenu("Cadastrar");
+        
+        JMenuItem itemCategoria = new JMenuItem("Categoria");
+        JMenuItem itemCliente = new JMenuItem("Cliente");
+        JMenuItem itemPedido = new JMenuItem("Pedido");
+		JMenuItem itemProduto = new JMenuItem("Produto");
+		
+        menuCadastrar.add(itemCategoria);
+        menuCadastrar.add(itemCliente);
+        menuCadastrar.add(itemPedido);
+        menuCadastrar.add(itemProduto);
+
+        
+        itemCategoria.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new CategoriaCadastrar();
+            }
+        });
+        itemCliente.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new ClienteCadastrar();
+            }
+        });
+        itemPedido.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new PedidoCadastrar();//mudar
+            }
+        });
+        itemProduto.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		new ProdutoCadastrar();	
+			}
+        });
+        
+        JMenu menuAjuda = new JMenu("Ajuda");
+        JMenuItem itemSobre = new JMenuItem("Sobre");
+        itemSobre.addActionListener(e -> JOptionPane.showMessageDialog(this, "Versão 2.0\nCriado por Camila Nefertite e Daniel Almeida"));
+        menuAjuda.add(itemSobre);        
+        barraMenu.add(menuArquivo);
+        barraMenu.add(menuCadastrar);
+        barraMenu.add(menuAjuda);
+
+        setJMenuBar(barraMenu);
+        
+        lbTitulo = new JLabel();
+		lbTitulo.setText("Bem-Vindo(a)");
+		lbTitulo.setFont(new Font("Arial", Font.ITALIC /*|Font.BOLD*/, 49));
+		lbTitulo.setForeground(Color.decode("#000000"));
+		lbTitulo.setBounds(290,25,320,80); //y, x, width, height
+		add(lbTitulo);
+		
+		lbSubTitulo = new JLabel();
+		lbSubTitulo.setText("ao Sistema de Cadastros da Loja Virtual!");
+		lbSubTitulo.setFont(new Font("Arial", Font.ITALIC, 21));
+		lbSubTitulo.setForeground(Color.decode("000000"));//(new Color(166, 27, 98, 204));
+		lbSubTitulo.setBounds(235,71,430,80); //y, x, width, height
+		add(lbSubTitulo);
+		
+		
+		
+		
+		JLabel imageLabel = loadImage("D:\\2º Ano\\Tecnico\\D.S\\prjtMenuCrudVSecrets\\src\\logoVS.png");
+        if (imageLabel != null) {
+            imageLabel.setBounds(100, 100, 700, 300); // Ajuste as coordenadas conforme necessário
+            panel.add(imageLabel);
+        }
+		
+		lbTxtP = new JLabel();
+		lbTxtP.setText("Escolha uma de nossas aplicações no menu");
+		lbTxtP.setFont(new Font("Arial", Font.ITALIC, 16));
+		lbTxtP.setForeground(Color.decode("000000"));//(new Color(166, 27, 98, 204));
+		lbTxtP.setBounds(290,370,320,80); //y, x, width, height 580
+		add(lbTxtP);
+		
+			
+		
+		
+		
+    }
+
+	public static void main(String[] args) throws SQLException{
+    	//Produto produto = new Produto();
+		
+		/*INSERIR
+		produto.setNomeProduto("Whey Protein de BLABA");
+		produto.setDescricaoProduto("heaven aint close in a place like this");
+		produto.setPrecoProduto(2);
+		produto.setQtdProduto(9);
+		
+		ProdutoDao ProdutoDao = new ProdutoDao();
+		ProdutoDao.adicionar(produto);
+		/*INSERIR*/
+
+		/*ALTERAR
+		produto.setIdProduto(2);
+		produto.setNomeProduto("11 do 11 da SHOPPE");
+		produto.setDescricaoProduto("WHY'D ONLY CALL ME WHEN YOUR HIGH???");
+		produto.setPrecoProduto(99);
+		produto.setQtdProduto(4);
+		
+
+		ProdutoDao ProdutoDao = new ProdutoDao();		
+		ProdutoDao.alterar(produto);
+		/*ALTERAR*/
+
+		/*EXCLUIR
+		produto.setIdProduto(1);
+		ProdutoDao ProdutoDao = new ProdutoDao();
+		ProdutoDao.excluir(produto);
+
+		/*EXCLUIR*/
+
+		/*CONSULT
+		List<Produto> produtos = new ProdutoDao().getLista();
+		for(Produto pro: produtos) {
+			System.out.println(pro.getIdProduto() + " " + pro.getNomeProduto() + " " + pro.getPrecoProduto() + " " + pro.getDescricaoProduto() + " " + pro.getQtdProduto());
+		}
+		/*CONSULTA*/
+    	
+        SwingUtilities.invokeLater(() -> {
+            TelasMenu tela = new TelasMenu();
+            tela.setVisible(true);
+        });
+    }
+}
