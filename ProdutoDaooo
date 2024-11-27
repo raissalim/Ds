@@ -1,0 +1,108 @@
+package dao;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import model.Produto;
+
+public class ProdutoDao {
+	
+	private Connection connection;
+	
+	public ProdutoDao() {
+		this.connection = new ConnectionFactory().getConnection();
+	}
+
+	
+	public void adicionar(Produto produto) throws SQLException {
+		try {
+			String sql = "INSERT INTO tbproduto (nomeProduto, descricaoProduto, precoProduto, qtdProduto, escCategoria) VALUES(?,?,?,?,?)";
+			
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			
+			stmt.setString(1,produto.getNomeProduto());
+			stmt.setString(2,produto.getDescricaoProduto());
+			stmt.setDouble(3,produto.getPrecoProduto());
+			stmt.setInt(4,produto.getQtdProduto());
+			stmt.setInt(5,produto.getEscCategoria());
+			
+			stmt.execute();
+			stmt.close();
+		}
+		catch(SQLException e){
+			System.out.println("Erro:"+e);
+		}
+		finally {
+			connection.close();
+		}
+	}
+	
+	public List<Produto> getLista() throws SQLException{
+		try {
+			List<Produto> produtos = new ArrayList<Produto>();
+			PreparedStatement stmt = this.connection.prepareStatement("SELECT * FROM tbproduto WHERE idProduto=?");
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				Produto produto = new Produto();
+				produto.setIdProduto(rs.getInt(1));
+				produto.setNomeProduto(rs.getString(2));
+				produto.setDescricaoProduto(rs.getString(3));
+				produto.setPrecoProduto(rs.getDouble(4));
+				produto.setQtdProduto(rs.getInt(5));
+				produto.setEscCategoria(rs.getInt(6));
+				produtos.add(produto);
+			}
+			rs.close();
+			stmt.close();
+			
+			return produtos;
+		}
+		catch(SQLException e){
+			throw new RuntimeException();
+		}
+		finally {
+			connection.close();
+		}
+	}
+	public void alterar(Produto produto) throws SQLException {
+		String sql = "UPDATE tbproduto SET nomeProduto=?, descricaoProduto=?, precoProduto=?, qtdProduto=?, escCategoria=? WHERE idProduto=?";
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setString(1, produto.getNomeProduto());
+			stmt.setString(2, produto.getDescricaoProduto());
+			stmt.setDouble(3, produto.getPrecoProduto());
+			stmt.setInt(4, produto.getQtdProduto());	
+			stmt.setInt(5, produto.getEscCategoria());	
+			stmt.setInt(6, produto.getIdProduto());
+			
+			stmt.execute();
+			stmt.close();
+		}
+		catch(SQLException e) {
+			throw new RuntimeException();
+		}
+		finally {
+			connection.close();
+		}
+	}
+	public void excluir(Produto produto) throws SQLException{
+		String sql = "DELETE FROM tbproduto WHERE idProduto=?";
+		try{
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setInt(1, produto.getIdProduto());
+			stmt.execute();
+			stmt.close();
+			System.out.println("Dados excluídos com sucesso!");
+		}
+		catch(SQLException e){
+			throw new RuntimeException();
+		}
+		finally{
+			connection.close();
+		}
+	}
+	
+}
