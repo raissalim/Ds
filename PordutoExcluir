@@ -1,0 +1,85 @@
+package prjtMenuCrudVSecrets;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+import model.Produto;
+import java.sql.SQLException;
+import java.util.List;
+import dao.ProdutoDao;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+
+public class ProdutoExcluir extends JFrame{
+	private JLabel lbCampo;
+	private JLabel lbTitulo;
+	private JTextField txCampo1;
+	private JButton btExcluir;
+	
+	public ProdutoExcluir() {		
+		setTitle("Excluir Produto ");
+        setSize(450, 270);
+		setLocationRelativeTo(null);
+		setLayout(null);
+		setResizable(false);
+		getContentPane().setBackground(Color.decode("#FFEAF1"));
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        lbTitulo = new JLabel();
+		lbTitulo.setText("Excluir um Produto");
+		lbTitulo.setForeground(Color.decode("#382F32"));
+		lbTitulo.setFont(new Font("Arial", Font.ITALIC |Font.BOLD, 23));
+		lbTitulo.setBounds(25,-13,470,80);
+		add(lbTitulo);               
+                                             
+        lbCampo = new JLabel();
+		lbCampo.setText("Codigo do Produto:");
+		lbCampo.setBackground(Color.decode("#FFEDF1"));
+		lbCampo.setFont(new Font("Arial", Font.PLAIN, Font.ITALIC | 19));
+		lbCampo.setBounds(125,74,265,40);
+		add(lbCampo);
+		
+		txCampo1 = new JTextField();
+		txCampo1.setBounds(125,108,200,26);
+		txCampo1.setBackground(Color.decode("#ffffff"));
+		add(txCampo1);
+		
+		btExcluir = new JButton();
+		btExcluir.setBounds(100,190,250,30);
+		btExcluir.setText("Excluir Categoria");
+		add(btExcluir);
+		
+
+		btExcluir.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        try {
+		            int idProduto = Integer.parseInt(txCampo1.getText());
+
+		            Produto produto = new Produto();
+		            produto.setIdProduto(idProduto);
+
+		            ProdutoDao produtoDao = new ProdutoDao();
+		            produtoDao.excluir(produto);
+		            
+		            JOptionPane.showMessageDialog(null, "Produto Excluído com Sucesso!");
+		        } catch (SQLException ex) {
+		            JOptionPane.showMessageDialog(null, "Erro ao excluir o produto: " + ex.getMessage());
+		        }
+		    }
+		});
+
+		
+        setVisible(true);
+	}	
+}
