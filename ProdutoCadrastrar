@@ -1,0 +1,272 @@
+package prjtMenuCrudVSecrets;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+import model.Produto;
+import java.sql.SQLException;
+import java.util.List;
+import dao.ProdutoDao;
+
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
+import java.awt.image.BufferedImage;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+
+public class ProdutoCadastrar extends JFrame{
+	private JLabel lbCampo;
+	private JLabel lbTitulo;
+	private JTextField txCampo1;
+	private JTextField txCampo2;
+	private JTextField txCampo3;
+	private JTextField txCampo4;
+	private ButtonGroup bgCat;
+	private JRadioButton rdCat1;
+	private JRadioButton rdCat2;
+	private JRadioButton rdCat3;
+	//private JTextField txCampo9;
+	JLabel loadImage(String fileName) {
+        try {
+            BufferedImage image = ImageIO.read(new File(fileName));
+            return new JLabel(new ImageIcon(image));
+        } catch (Exception e) {
+            System.out.println("Erro ao carregar a imagem: " + e.getMessage());
+            return null;
+        }
+    }
+	
+	private JButton btCadastrar;
+	
+	public ProdutoCadastrar() {           
+        JMenuBar barraMenu = new JMenuBar();
+        JMenu menuArquivo = new JMenu("Arquivo");
+        JMenuItem itemSair = new JMenuItem("Sair");
+        itemSair.addActionListener(e -> System.exit(0));
+        menuArquivo.add(itemSair);
+        
+        JMenu menuAcoes = new JMenu("Ações");
+	        JMenuItem itemAlterar = new JMenuItem("Alterar Dados");
+	        JMenuItem itemExcluir = new JMenuItem("Excluir Dados");
+	        JMenuItem itemVisualizar = new JMenuItem("Visualizar Dados");
+
+        menuAcoes.add(itemAlterar);
+        menuAcoes.add(itemVisualizar);
+        menuAcoes.add(itemExcluir);
+        
+        itemAlterar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new ProdutoAlterar();
+            }
+        });
+        itemVisualizar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new ProdutoVisualizar();
+            }
+        });
+        itemExcluir.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new ProdutoExcluir();
+            }
+        });              
+        barraMenu.add(menuAcoes);
+        setJMenuBar(barraMenu);
+		
+        
+		setTitle("Cadastrar Novo Produto");
+        setSize(700, 430);
+		setLocationRelativeTo(null);
+		setLayout(null);
+		setResizable(false);
+		getContentPane().setBackground(Color.decode("#D9D8BF"));
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        lbTitulo = new JLabel();
+		lbTitulo.setText("Cadastre um Produto");
+		lbTitulo.setForeground(Color.decode("#00000000"));
+		lbTitulo.setFont(new Font("Arial", Font.ITALIC |Font.BOLD, 27));
+		lbTitulo.setBounds(150,-4,590,100);
+		add(lbTitulo);
+		
+        /*txCampo9 = new JTextField();
+		txCampo9.setBounds(70,20,50,50);
+		txCampo9.setBackground(Color.decode("#ffffff"));
+		add(txCampo9);*/              
+                        
+		JLabel imageLabel = loadImage("D:\\2º Ano\\Tecnico\\D.S\\prjtMenuCrudVSecrets\\src\\logoKisses.png");
+        if (imageLabel != null) {
+            imageLabel.setBounds(70, 3, 80, 80); 
+            this.add(imageLabel);
+        }
+		
+        lbCampo = new JLabel();
+		lbCampo.setText("Nome do Produto:");
+		lbCampo.setBackground(Color.decode("#FFEDF1"));
+		lbCampo.setFont(new Font("Arial", Font.BOLD, Font.ITALIC | 16));
+		lbCampo.setBounds(82,80,265,40);
+		add(lbCampo);
+		
+		txCampo1 = new JTextField();
+		txCampo1.setBounds(82,114,250,27);
+		txCampo1.setBackground(Color.decode("#ffffff"));
+		add(txCampo1);
+
+		
+		lbCampo = new JLabel();
+		lbCampo.setText("Descrição do Produto:");
+		lbCampo.setFont(new Font("Arial", Font.BOLD, Font.ITALIC | 16));
+		lbCampo.setBounds(368,80,265,40);
+		add(lbCampo);
+		 
+		txCampo2 = new JTextField();
+		txCampo2.setBounds(368,114,250,27);
+		txCampo2.setBackground(Color.decode("#FAF9F6"));
+		add(txCampo2);
+
+		
+		lbCampo = new JLabel();
+		lbCampo.setText("Preço do Produto:");
+		lbCampo.setFont(new Font("Arial", Font.BOLD, Font.ITALIC | 16));
+		lbCampo.setBounds(82,150,265,40);
+		add(lbCampo);
+		
+		txCampo3 = new JTextField();
+		txCampo3.setBounds(82,184,250,27);
+		txCampo3.setBackground(Color.decode("#FAF9F6"));
+		add(txCampo3);
+		
+		
+		lbCampo = new JLabel();
+		lbCampo.setText("Quatidade do Produto:");
+		lbCampo.setFont(new Font("Arial", Font.BOLD, Font.ITALIC  |16));
+		lbCampo.setBounds(368,150,271,40);
+		add(lbCampo);
+		
+		txCampo4 = new JTextField();
+		txCampo4.setBounds(368,184,250,27);
+		txCampo4.setBackground(Color.decode("#FAF9F6"));
+		add(txCampo4);
+		
+		
+		lbCampo = new JLabel();
+		lbCampo.setText("Categoria do Produto:");
+		lbCampo.setFont(new Font("Arial", Font.BOLD, Font.ITALIC | 16));
+		lbCampo.setBounds(82,220,271,40);
+		add(lbCampo);
+		
+		bgCat = new ButtonGroup();
+		bgCat.add(rdCat1);
+		bgCat.add(rdCat2);
+		bgCat.add(rdCat3);
+		
+		rdCat1 = new JRadioButton();
+		rdCat1.setBounds(150, 254, 100, 40);//300width deCadaUm
+		rdCat1.setText("Lingeries");
+		rdCat1.setFont(new Font("Arial", Font.PLAIN, 18));
+		rdCat1.setBackground(Color.decode("#d4d4d4"));
+		rdCat1.setOpaque(false);
+		add(rdCat1);
+		
+		rdCat2 = new JRadioButton();
+		rdCat2.setBounds(300, 254, 100, 40);
+		rdCat2.setText("Roupas");
+		rdCat2.setFont(new Font("Arial", Font.PLAIN, 18));
+		rdCat2.setBackground(Color.decode("#d4d4d4"));
+		rdCat2.setOpaque(false);
+		add(rdCat2);
+		
+		rdCat3 = new JRadioButton();
+		rdCat3.setBounds(450, 254, 100, 40);//300width deCadaUm
+		rdCat3.setText("Lingeries");
+		rdCat3.setFont(new Font("Arial", Font.PLAIN, 18));
+		rdCat3.setBackground(Color.decode("#d4d4d4"));
+		rdCat3.setOpaque(false);
+		add(rdCat3);
+		
+		
+		
+		
+		
+	
+		
+		btCadastrar = new JButton();
+		btCadastrar.setBounds(165,320,370,30);
+		btCadastrar.setText("Cadastrar Produto");
+		add(btCadastrar);
+		
+		
+		try {
+            BufferedImage img = ImageIO.read(new File("D:\\2º Ano\\Tecnico\\D.S\\telas\\src\\bgCadastros.png")); 
+            Image dimg = img.getScaledInstance(700, 500, Image.SCALE_SMOOTH);
+            ImageIcon imageIcon = new ImageIcon(dimg);
+
+            JLabel label = new JLabel(imageIcon);
+            label.setBounds(0, 0, 700, 430);
+            getContentPane().add(label);
+            getContentPane().setComponentZOrder(label, getContentPane().getComponentCount() - 1);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Erro ao carregar a imagem de fundo: " + e.getMessage());
+        }	
+		
+		btCadastrar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+			        String nomePr = txCampo1.getText();
+			        String descPr = txCampo2.getText();
+			        double precoPr = Double.parseDouble(txCampo3.getText());
+			        int qtdPr = Integer.parseInt(txCampo4.getText());
+			        int catPr;
+			        
+			        if (rdCat1.isSelected()) {
+		                catPr = 1;
+		            } else if (rdCat2.isSelected()) {
+		                catPr = 2;
+		            } else{
+		                catPr = 3;
+		            }
+		                
+		                
+			        Produto produto = new Produto();
+			        produto.setNomeProduto(nomePr);
+			        produto.setDescricaoProduto(descPr);
+			        produto.setPrecoProduto(precoPr);
+			        produto.setQtdProduto(qtdPr);
+			        produto.setEscCategoria(catPr);
+
+			        ProdutoDao produtoDao = new ProdutoDao();
+			        produtoDao.adicionar(produto);
+
+			        JOptionPane.showMessageDialog(null, "Produto Cadastrado com Sucesso!");
+			    } catch (Exception ex) {
+			        JOptionPane.showMessageDialog(null, "Erro ao cadastrar o produto: " + ex.getMessage());
+			    }
+			}
+			
+		});
+		
+        setVisible(true);
+	}	
+}
