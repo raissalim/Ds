@@ -1,0 +1,111 @@
+package dao;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import model.Cliente;
+
+public class ClienteDao {
+	
+	private Connection connection;
+	
+	public ClienteDao() {
+		this.connection = new ConnectionFactory().getConnection();
+	}
+
+	
+	public void adicionar(Cliente cliente) throws SQLException {
+		try {
+			String sql = "INSERT INTO tbcliente (nomeCliente, cpfCliente, emailCliente, foneCliente, cepCliente, dataNascCliente) VALUES(?,?,?,?,?,?)";
+			
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			
+			stmt.setString(1,cliente.getNomeCliente());
+			stmt.setInt(2,cliente.getCpfCliente());
+			stmt.setString(3,cliente.getEmailCliente());
+			stmt.setInt(4,cliente.getFoneCliente());
+			stmt.setInt(5,cliente.getCepCliente());
+			stmt.setString(6,cliente.getDataNascCliente());
+			
+			stmt.execute();
+			stmt.close();
+		}
+		catch(SQLException e){
+			System.out.println("Erro:"+e);
+		}
+		finally {
+			connection.close();
+		}
+	}
+	
+	public List<Cliente> getLista() throws SQLException{
+		try {
+			List<Cliente> clientes = new ArrayList<Cliente>();
+			PreparedStatement stmt = this.connection.prepareStatement("SELECT * FROM tbcliente WHERE idCliente=?");
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				Cliente cliente = new Cliente();
+				cliente.setIdCliente(rs.getInt(1));
+				cliente.setNomeCliente(rs.getString(2));
+				cliente.setCpfCliente(rs.getInt (3));
+				cliente.setEmailCliente(rs.getString(4));
+				cliente.setFoneCliente(rs.getInt(5));
+				cliente.setCepCliente(rs.getInt(6));
+				cliente.setDataNascCliente(rs.getString(7));
+				clientes.add(cliente);
+			}
+			rs.close();
+			stmt.close();
+			
+			return clientes;
+		}
+		catch(SQLException e){
+			throw new RuntimeException();
+		}
+		finally {
+			connection.close();
+		}
+	}
+	public void alterar(Cliente cliente) throws SQLException {
+		String sql = "UPDATE tbcliente SET nomeCliente=?, cpfCliente=?, emailCliente=?, foneCliente=?, cepCliente=?, dataNascCliente=? WHERE idCliente=?";
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setString(1, cliente.getNomeCliente());
+			stmt.setInt(2, cliente.getCpfCliente());
+			stmt.setString(3, cliente.getEmailCliente());
+			stmt.setInt(4, cliente.getFoneCliente());			
+			stmt.setInt(5, cliente.getCepCliente());
+			stmt.setString(5, cliente.getDataNascCliente());			
+			stmt.setInt(1, cliente.getIdCliente());
+			
+			stmt.execute();
+			stmt.close();
+		}
+		catch(SQLException e) {
+			throw new RuntimeException();
+		}
+		finally {
+			connection.close();
+		}
+	}
+	public void excluir(Cliente cliente) throws SQLException{
+		String sql = "DELETE FROM tbcliente WHERE idCliente=?";
+		try{
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setInt(1, cliente.getIdCliente());
+			stmt.execute();
+			stmt.close();
+			System.out.println("Dados excluídos com sucesso!");
+		}
+		catch(SQLException e){
+			throw new RuntimeException();
+		}
+		finally{
+			connection.close();
+		}
+	}
+	
+}
