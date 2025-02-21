@@ -1,0 +1,77 @@
+package interfaceGrafica;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JOptionPane; // Importar JOptionPane
+import javax.swing.BorderFactory; // Importar BorderFactory
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class numPositivo extends JFrame {
+
+    // Atributos de instância
+    private JLabel lbValor1;
+    private JTextField txNumero1;
+    private JButton btResultado;
+
+    // Construtor
+    public numPositivo() {
+        setTitle("Positivo");
+        setSize(300, 300);  // Largura e altura (pixels)
+        setDefaultCloseOperation(EXIT_ON_CLOSE); // Libera da memória ao fechar
+        setLayout(null);
+        setResizable(false); // Não será possível redimensionar o tamanho da janela
+        setLocationRelativeTo(null); // Centraliza a janela na tela
+        getContentPane().setBackground(new Color(220, 188, 239)); // Cor de fundo verde claro, ajuste conforme necessário
+
+        // Inicializar componentes
+        lbValor1 = new JLabel("Digite um número:");
+        lbValor1.setBounds(50, 50, 200, 30);
+        add(lbValor1);
+
+        txNumero1 = new JTextField();
+        txNumero1.setBounds(50, 100, 200, 30);
+        add(txNumero1);
+
+        btResultado = new JButton("Verificar");
+        btResultado.setBounds(50, 150, 200, 30);
+        add(btResultado);
+        btResultado.setForeground(Color.WHITE);
+        btResultado.setBackground(new Color(218, 152, 240));
+       
+        Font font = new Font("roboto", Font.BOLD, 16); // Fonte Arial, Negrito, Tamanho 16
+        btResultado.setFont(font);
+
+
+        // Adicionar ActionListener para o botão
+        btResultado.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Lógica para verificar se o número é positivo
+                try {
+                    double numero = Double.parseDouble(txNumero1.getText());
+                    if (numero > 0) {
+                        JOptionPane.showMessageDialog(null, "O número é positivo.");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "O número não é positivo.");
+                    }
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Por favor, insira um número válido.");
+                }
+            }
+        });
+        setVisible(true); // SEMPRE A ÚLTIMA LINHA (False por padrão)
+
+    }
+ 
+    // Método principal para executar a interface
+    public static void main(String[] args) {
+        // Criar uma instância da classe e torná-la visível
+        numPositivo app = new numPositivo();
+        app.setVisible(true);
+    }
+}
